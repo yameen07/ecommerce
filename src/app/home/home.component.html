@@ -1,0 +1,211 @@
+<div class="wrapper">
+  <nav id="sidebar">
+    <div class="sidebar-header">
+      <h3>Home</h3>
+    </div>
+
+    <ul class="list-unstyled components">
+      <div *ngFor="let item of categories">
+        <li>
+          <a (click)="onClickCategory(item.name)">{{ item.name }}</a>
+        </li>
+      </div>
+    </ul>
+  </nav>
+  <nav *ngIf="activeCategory" id="sidebar" class="subcategory">
+    <div class="sidebar-header">
+      <h3>{{ categoryName }}</h3>
+    </div>
+
+    <ul class="list-unstyled components">
+      <div *ngFor="let item of subcategories">
+        <li>
+          <a (click)="onClickSubCategory(item.name)">{{ item.name }}</a>
+        </li>
+      </div>
+    </ul>
+    <a (click)="activeCategory = !activeCategory; products = productList"
+      >back</a
+    >
+  </nav>
+
+  <div id="content">
+    <button *ngIf="isLoading" class="btn btn-primary" type="button" disabled>
+      <span
+        class="spinner-grow spinner-grow-sm"
+        role="status"
+        aria-hidden="true"
+      ></span>
+      Loading...
+    </button>
+
+    <form class="d-flex">
+      <input
+        class="form-control me-2"
+        (keyup)="searchItem()"
+        [(ngModel)]="search"
+        name="search"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+      />
+      <a (click)="sort('description')">
+        <img
+          src="https://cdn-icons.flaticon.com/png/512/2769/premium/2769161.png?token=exp=1650254553~hmac=17cbd86903ce92aacf13608ff8ef15b6"
+          style="width: 30px"
+          alt=""
+      /></a>
+      <a (click)="sort('price')">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/25/25630.png"
+          style="width: 30px"
+          alt=""
+      /></a>
+    </form>
+
+    <div *ngIf="!isView" class="card-group">
+      <div *ngFor="let i of products" class="col-sm-3 carditem">
+        <div class="card border-dark bg-lightk">
+          <div class="cardimg">
+            <img
+              style="cursor: pointer"
+              class="card-img cardimg"
+              (click)="view(i)"
+              src="{{ i.image[0] }}"
+            />
+          </div>
+          <div class="card-body">
+            <div class="card-detail">
+              <h6 class="card-title">{{ i.description }}</h6>
+            </div>
+            <hr />
+
+            <h5 class="card-title">₹ {{ i.price }}</h5>
+
+            <button class="btn btn-primary btnbuy" (click)="checkout(i)">
+              Buy now
+            </button>
+            <div>
+              <button
+                class="btn btn-outline-warning btnother"
+                (click)="addWishlist(i)"
+              >
+                wishlist
+              </button>
+
+              <button
+                class="btn btn-outline-success btnother"
+                (click)="addCart(i)"
+              >
+                Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="isView" class="item-carousel row">
+      <div class="col-sm-4">
+        <div id="Indicators" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <button
+              type="button"
+              data-bs-target="#Indicators"
+              data-bs-slide-to="0"
+              class="active"
+              aria-current="true"
+              aria-label="Slide 1"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#Indicators"
+              data-bs-slide-to="1"
+              aria-label="Slide 2"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#Indicators"
+              data-bs-slide-to="2"
+              aria-label="Slide 3"
+            ></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img
+                src="{{ itemData.image[0] }}"
+                class="d-block w-100"
+                alt="..."
+              />
+            </div>
+            <div class="carousel-item">
+              <img
+                src="{{ itemData.image[1] }}"
+                class="d-block w-100"
+                alt="..."
+              />
+            </div>
+            <div class="carousel-item">
+              <img
+                src="{{ itemData.image[2] }}"
+                class="d-block w-100"
+                alt="..."
+              />
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#Indicators"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="false"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#Indicators"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+      <div class="col">
+        <h1>{{ itemData.description }}</h1>
+        <p>{{ itemData.title }}</p>
+        <br />
+        <h2>₹ {{ itemData.price }}</h2>
+        <br />
+        <hr />
+        <button class="btn btn-primary" style="width: 400px">Buy now</button>
+        <br />
+        <button
+          class="btn btn-outline-warning btnother"
+          style="width: 200px"
+          (click)="addWishlist(itemData)"
+        >
+          wishlist
+        </button>
+
+        <button
+          class="btn btn-outline-success btnother"
+          style="width: 200px"
+          (click)="addCart(itemData)"
+        >
+          Add to cart
+        </button>
+        <br />
+
+        <button
+          class="btn btn-secondary"
+          style="margin-top: 20px"
+          (click)="isView = !isView"
+        >
+          back
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,109 @@
+<button *ngIf="isLoading" class="btn btn-primary" type="button" disabled>
+  <span
+    class="spinner-grow spinner-grow-sm"
+    role="status"
+    aria-hidden="true"
+  ></span>
+  Loading...
+</button>
+<form class="d-flex">
+  <input
+    class="form-control me-2"
+    [(ngModel)]="search"
+    name="search"
+    type="search"
+    placeholder="Search"
+    aria-label="Search"
+  />
+  <button class="btn btn-outline-success" (click)="searchItem()" type="submit">
+    Search
+  </button>
+</form>
+
+<table *ngIf="!isLoading && !isEdit" class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">category</th>
+      <th scope="col">sub category</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let i of products">
+      <td>{{ i.category }}</td>
+      <td>{{ i.subcategory }}</td>
+      <td>{{ i.title }}</td>
+      <td>{{ i.description }}</td>
+      <td>{{ i.price }}</td>
+      <button class="btn btn-primary button" (click)="edit(i)">Edit</button>
+
+      <button class="btn btn-danger button" (click)="delete(i)">Delete</button>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="isEdit && !isLoading" class="container">
+  <h1>Edit Data</h1>
+
+  <div class="submit-form">
+    <div>
+      <div class="form-group">
+        <label for="category">Category</label>
+        <input
+          type="text"
+          class="form-control"
+          id="category"
+          required
+          [(ngModel)]="data.category"
+          name="category"
+        />
+      </div>
+      <div class="form-group">
+        <label for="subcategory">Sub Category</label>
+        <input
+          type="text"
+          class="form-control"
+          id="subcategory"
+          required
+          [(ngModel)]="data.subcategory"
+          name="subcategory"
+        />
+      </div>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          required
+          [(ngModel)]="data.title"
+          name="title"
+        />
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input
+          class="form-control"
+          id="description"
+          required
+          [(ngModel)]="data.description"
+          name="description"
+        />
+      </div>
+      <div class="form-group">
+        <label for="title">price</label>
+        <input
+          type="number"
+          class="form-control"
+          id="price"
+          required
+          [(ngModel)]="data.price"
+          name="price"
+        />
+      </div>
+      <button (click)="saveData()" class="btn btn-success">Submit</button>
+    </div>
+  </div>
+</div>

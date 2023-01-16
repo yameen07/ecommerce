@@ -1,0 +1,66 @@
+<button *ngIf="isLoading" class="btn btn-primary" type="button" disabled>
+  <span
+    class="spinner-grow spinner-grow-sm"
+    role="status"
+    aria-hidden="true"
+  ></span>
+  Loading...
+</button>
+<table *ngIf="!isLoading" class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Category</th>
+      <th scope="col">Sub Category</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let i of subcategories">
+      <td>{{ i.category }}</td>
+      <td>{{ i.name }}</td>
+
+      <button class="btn btn-danger" (click)="delete(i)">Delete</button>
+    </tr>
+  </tbody>
+</table>
+
+<form class="container" [formGroup]="form" (ngSubmit)="saveData()">
+  <p>Add Data</p>
+
+  <div *ngIf="!submitted">
+    <div class="form-group">
+      <label for="category">Category:</label>
+      <select class="form-control" (change)="categoryData($event)">
+        <option disabled>Select Category</option>
+        <option>Choose Category</option>
+        <option *ngFor="let item of category">{{ item.name }}</option>
+      </select>
+    </div>
+    <div class="form-outline form-group">
+      <label class="form-label">Sub Category:</label>
+      <input
+        type="subcategory"
+        id="subcategory"
+        formControlName="subcategory"
+        class="form-control"
+        placeholder="subcategory "
+      />
+      <br />
+      <span
+        *ngIf="
+          !form.get('subcategory').valid && form.get('subcategory').touched
+        "
+        class="help-block"
+        >Please enter a valid subcategory!</span
+      >
+    </div>
+
+    <button class="btn btn-primary" [disabled]="!form.valid" type="Submit">
+      Submit
+    </button>
+  </div>
+
+  <div *ngIf="submitted">
+    <h4>You submitted successfully!</h4>
+    <button class="btn btn-success" (click)="newData()">Add</button>
+  </div>
+</form>

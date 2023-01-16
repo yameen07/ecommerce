@@ -1,0 +1,131 @@
+<section class="h-100 gradient-form" style="background-color: #eee">
+  <div class="container py-5 h-10">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-xl-10">
+        <div class="card rounded-3 text-black">
+          <div class="row g-0">
+            <div class="col-lg-6">
+              <div class="card-body p-md-5 mx-md-4">
+                <div class="text-center">
+                  <img
+                    src="https://www.logopik.com/wp-content/uploads/edd/2018/07/Ecommerce-Logo-Vector.png"
+                    style="width: 185px"
+                    alt="logo"
+                  />
+                  <h4 class="mt-1 mb-5 pb-1">ITT Kart</h4>
+                </div>
+
+                <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+                  <p>Please Create a new account</p>
+                  <div class="form-outline mb-4 form-group">
+                    <input
+                      type="name"
+                      id="name"
+                      formControlName="name"
+                      class="form-control"
+                      placeholder="Username"
+                    />
+                    <label class="form-label">Username</label>
+                    <br />
+                    <span
+                      *ngIf="
+                        !signupForm.get('name').valid &&
+                        signupForm.get('name').touched
+                      "
+                      class="help-block"
+                      >Please enter a valid name!</span
+                    >
+                  </div>
+                  <div class="form-outline mb-4 form-group">
+                    <input
+                      type="email"
+                      id="email"
+                      formControlName="email"
+                      class="form-control"
+                      placeholder="email address"
+                    />
+                    <label class="form-label">Email</label>
+                    <br />
+                    <span
+                      *ngIf="
+                        !signupForm.get('email').valid &&
+                        signupForm.get('email').touched
+                      "
+                      class="help-block"
+                      >Please enter a valid email!</span
+                    >
+                  </div>
+
+                  <div class="form-outline mb-4 form-group">
+                    <input
+                      type="password"
+                      id="password"
+                      formControlName="password"
+                      class="form-control"
+                    />
+                    <label class="form-label">Password</label>
+                    <br />
+                    <span
+                      *ngIf="
+                        !signupForm.get('password').valid &&
+                        signupForm.get('password').touched
+                      "
+                      class="help-block"
+                      >Please enter a valid Password!</span
+                    >
+                  </div>
+                  <div class="form-check form-switch">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      (change)="checkValue()"
+                      id="flexSwitchCheckDefault"
+                    />
+                    <label class="form-check-label" for="flexSwitchCheckDefault"
+                      >Admin</label
+                    >
+                  </div>
+                  <div *ngIf="isChecked" class="form-outline mb-4 form-group">
+                    <input
+                      type="password"
+                      id="secretkey"
+                      formControlName="secretkey"
+                      class="form-control"
+                      placeholder="secretkey"
+                    />
+                    <label class="form-label">Secret key</label>
+                    <br />
+                    <span
+                      *ngIf="
+                        !signupForm.get('secretkey').valid &&
+                        signupForm.get('secretkey').touched
+                      "
+                      class="help-block"
+                      >Please enter key!</span
+                    >
+                  </div>
+
+                  <div class="text-center pt-1 mb-5 pb-1">
+                    <button
+                      class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
+                      [disabled]="!signupForm.valid"
+                      type="Submit"
+                    >
+                      Sign up
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+              <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                <h4 class="mb-4">We are more than just a company</h4>
+                <p class="small mb-0">Great products at your doorstep.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

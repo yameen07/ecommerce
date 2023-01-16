@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center">
+  <button *ngIf="isLoading" class="btn btn-primary spin" type="button" disabled>
+    <span
+      class="spinner-grow spinner-grow-sm"
+      role="status"
+      aria-hidden="true"
+    ></span>
+    Loading...
+  </button>
+
+  <div *ngIf="!isLoading && isContent" class="row">
+    <div class="col">
+      <div
+        *ngFor="let i of products"
+        class="card border-dark flex-row flex-wrap"
+      >
+        <div class="card-header border-0">
+          <img src="{{ i.image[0] }}" alt="" />
+        </div>
+        <div class="card-block px-2">
+          <h4 class="card-title">{{ i.title }}</h4>
+          <p class="card-text">{{ i.description }}</p>
+          <p class="card-text">Eligible for FREE Shipping</p>
+          <button class="btn btn-danger" (click)="delete(i)">Delete</button>
+        </div>
+        <div class="w-100"></div>
+
+        <div class="card-footer ms-auto w-100 text-muted">₹ {{ i.price }}</div>
+      </div>
+    </div>
+
+    <div class="card border-dark mb-3 card-price col" style="max-width: 18rem">
+      <div class="card-header">Cart Details</div>
+      <div class="card-body text-dark">
+        <p class="card-text">Total Items: {{ totalItems }}</p>
+
+        <h5 class="card-title">Total Price</h5>
+        <h5 class="card-title">₹ {{ totalPrice }}</h5>
+
+        <hr />
+        <button class="btn btn-primary" (click)="checkout()">Checkout</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!isLoading && !isContent">
+    <h1>No Items In Cart</h1>
+  </div>
+</div>

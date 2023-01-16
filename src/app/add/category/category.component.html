@@ -1,0 +1,52 @@
+<button *ngIf="isLoading" class="btn btn-primary" type="button" disabled>
+  <span
+    class="spinner-grow spinner-grow-sm"
+    role="status"
+    aria-hidden="true"
+  ></span>
+  Loading...
+</button>
+<table *ngIf="!isLoading" class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">category</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let i of categories">
+      <td>{{ i.name }}</td>
+      <button class="btn btn-danger" (click)="delete(i)">Delete</button>
+    </tr>
+  </tbody>
+</table>
+
+<form class="container" [formGroup]="form" (ngSubmit)="saveData()">
+  <p>Add Data</p>
+  <div *ngIf="!submitted">
+    <div class="form-outline form-group">
+      <input
+        type="category"
+        id="category"
+        formControlName="category"
+        class="form-control"
+        placeholder="category "
+      />
+      <label class="form-label">Category</label>
+      <br />
+      <span
+        *ngIf="!form.get('category').valid && form.get('category').touched"
+        class="help-block"
+        >Please enter a valid category!</span
+      >
+    </div>
+
+    <button class="btn btn-primary" [disabled]="!form.valid" type="Submit">
+      Submit
+    </button>
+  </div>
+
+  <div *ngIf="submitted">
+    <h4>You submitted successfully!</h4>
+    <button class="btn btn-success" (click)="newData()">Add</button>
+  </div>
+</form>

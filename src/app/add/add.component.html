@@ -1,0 +1,39 @@
+<div class="wrapper">
+  <nav id="sidebar">
+    <div class="sidebar-header">
+      <h3>Admin</h3>
+    </div>
+
+    <ul class="list-unstyled components">
+      <li>
+        <a (click)="select('category')">Category</a>
+      </li>
+      <li>
+        <a (click)="select('subcategory')">SubCategory</a>
+      </li>
+      <li>
+        <a (click)="select('data')">Data</a>
+      </li>
+      <li>
+        <a (click)="select('edit')">Edit</a>
+      </li>
+      <li>
+        <a (click)="select('users')">Users</a>
+      </li>
+      <li>
+        <a (click)="select('orders')">Orders</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div id="content">
+    <div class="align-content-center">
+      <app-category *ngIf="selection === 'category'"></app-category>
+      <app-sub-category *ngIf="selection === 'subcategory'"></app-sub-category>
+      <app-data *ngIf="selection === 'data'"></app-data>
+      <app-edit *ngIf="selection === 'edit'"></app-edit>
+      <app-users *ngIf="selection === 'users'"></app-users>
+      <app-admin-orders *ngIf="selection === 'orders'"></app-admin-orders>
+    </div>
+  </div>
+</div>

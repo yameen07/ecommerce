@@ -1,0 +1,33 @@
+<button *ngIf="isLoading" class="btn btn-primary spin" type="button" disabled>
+  <span
+    class="spinner-grow spinner-grow-sm"
+    role="status"
+    aria-hidden="true"
+  ></span>
+  Loading...
+</button>
+<div *ngIf="!isLoading && isContent">
+  <table *ngFor="let items of products" class="table">
+    <thead>
+      <tr>
+        <th scope="col">Product</th>
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items.order">
+        <th scope="row">{{ item.title }}</th>
+        <td>{{ item.description }}</td>
+        <td>{{ item.price }}</td>
+      </tr>
+      <button class="btn btn-danger" (click)="cancel(items)">
+        Cancel Order
+      </button>
+    </tbody>
+  </table>
+  <br />
+</div>
+<div *ngIf="!isLoading && !isContent">
+  <h2>No Orders Placed</h2>
+</div>

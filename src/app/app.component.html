@@ -1,0 +1,73 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand">ITT Kart</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <div>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/Home">Home</a>
+        </li>
+      </div>
+      <div *ngIf="loggedIn && isAdmin">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/Add">Admin</a>
+        </li>
+      </div>
+      <div *ngIf="loggedIn">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/Orders">Orders</a>
+        </li>
+      </div>
+      <div *ngIf="!loggedIn">
+        <li
+          class="nav-item"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a class="nav-link" routerLink="/">Login</a>
+        </li>
+      </div>
+
+      <div *ngIf="loggedIn">
+        <li
+          class="nav-item"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a class="nav-link" (click)="logout()" routerLink="Home">Logout</a>
+        </li>
+      </div>
+    </ul>
+  </div>
+  <div class="navbar-text">
+    <a *ngIf="loggedIn">
+      {{ userName }}
+    </a>
+    <a routerLink="/Cart">
+      <img
+        class="navicon"
+        src="https://cdn-icons-png.flaticon.com/128/891/891462.png"
+        alt="..."
+      />
+    </a>
+    <a *ngIf="loggedIn" routerLink="/Wishlist">
+      <img
+        class="navicon"
+        src="https://cdn-icons.flaticon.com/png/512/4051/premium/4051800.png?token=exp=1649390483~hmac=5a001ecb2443ca711e62a918e2775133"
+        alt="..."
+      />
+    </a>
+  </div>
+</nav>
+<router-outlet></router-outlet>

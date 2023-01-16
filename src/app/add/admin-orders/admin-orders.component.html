@@ -1,0 +1,37 @@
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">UserId</th>
+      <th scope="col">name</th>
+      <th scope="col">phone</th>
+      <th scope="col">city</th>
+      <th scope="col">address</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let i of orders">
+    <tr>
+      <td>{{ i.id }}</td>
+      <td>{{ i.details.name }}</td>
+      <td>{{ i.details.phone }}</td>
+      <td>{{ i.details.city }}</td>
+      <td>{{ i.details.address }}</td>
+    </tr>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Product</th>
+          <th scope="col">Description</th>
+          <th scope="col">Price</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let items of i.order">
+        <tr>
+          <td>{{ items.title }}</td>
+          <td>{{ items.description }}</td>
+          <td>{{ items.price }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+  </tbody>
+</table>

@@ -1,0 +1,22 @@
+.card {
+  width: 100%;
+  margin: auto;
+  margin-top: 20px;
+}
+img {
+  height: 200px;
+  width: 150px;
+}
+.row {
+  margin: auto;
+  width: 70%;
+}
+.card-price {
+  height: 260px;
+}
+.spin {
+  margin-top: 5px;
+}
+p {
+  width: 400px;
+}

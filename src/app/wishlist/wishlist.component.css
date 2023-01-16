@@ -1,0 +1,15 @@
+.btni {
+  width: 100%;
+  margin-bottom: 3px;
+}
+
+.card-img {
+  height: 350px;
+  margin: auto;
+}
+.card {
+  margin: 4px;
+}
+.card-detail {
+  height: 70px;
+}
